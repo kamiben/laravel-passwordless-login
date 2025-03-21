@@ -118,7 +118,8 @@ class SignedUrlTest extends TestCase
         $this->url = $generator->generate();
         $response = $this->followingRedirects()->get($this->url);
         $response->assertSuccessful();
-        $response->assertSee($this->model_user->name);
+        // without 'false' you might have html encoded characters breaking the test - e.g. Donald O'Duck
+        $response->assertSee($this->model_user->name, false);
         $this->assertAuthenticatedAs($this->model_user);
     }
 
