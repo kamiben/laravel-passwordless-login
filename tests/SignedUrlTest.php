@@ -56,7 +56,7 @@ class SignedUrlTest extends TestCase
     /** @test */
     public function can_create_default_signed_login_url()
     {
-        $this->assertEquals(Carbon::now()->addMinutes(config('laravel-passwordless-login.login_route_expires'))->timestamp, $this->expires);
+        $this->assertEquals(Carbon::now()->addMinutes(intval(config('laravel-passwordless-login.login_route_expires')))->timestamp, $this->expires);
         $this->assertEquals($this->user->id, $this->uid);
         $this->assertEquals(config('laravel-passwordless-login.login_route_name'), $this->route);
     }
